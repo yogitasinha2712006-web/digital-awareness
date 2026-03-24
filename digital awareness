@@ -1,0 +1,215 @@
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+html = """
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cyber Security Awareness</title>
+
+<style>
+
+body {
+    font-family: 'Segoe UI';
+    margin: 0;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    font-size: 35px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #1e2a38;
+    padding: 25px;
+    margin: 20px;
+    border-radius: 15px;
+    width: 280px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    background: #00c6ff;
+    color: black;
+}
+
+.section {
+    display: none;
+    padding: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background: #00c6ff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+ul {
+    line-height: 1.8;
+}
+
+</style>
+
+<script>
+function show(id){
+    document.getElementById("home").style.display="none";
+    document.getElementById("malware").style.display="none";
+    document.getElementById("tips").style.display="none";
+    document.getElementById("examples").style.display="none";
+    document.getElementById(id).style.display="block";
+}
+</script>
+
+</head>
+
+<body>
+
+<h1>🔐 Cyber Security Awareness</h1>
+
+<div id="home">
+<div class="container">
+<div class="card" onclick="show('malware')">🦠 Malware Awareness</div>
+<div class="card" onclick="show('tips')">🛡️ Safety Tips</div>
+<div class="card" onclick="show('examples')">⚠️ Real-Life Examples</div>
+</div>
+</div>
+
+<!-- MALWARE -->
+<div id="malware" class="section">
+
+<h2>🦠 Malware Information</h2>
+
+<p>
+Malware (malicious software) is any program designed to disrupt, damage, or gain unauthorized access to computer systems, commonly stealing data or extorting money through ransomware.
+</p>
+
+<h3>📌 Common Types</h3>
+<ul>
+<li>Ransomware – Encrypts files, demanding payment</li>
+<li>Spyware – Secretly gathers data</li>
+<li>Trojans – Fake software to gain access</li>
+<li>Worms – Spread automatically</li>
+<li>Botnets – Used for DDoS attacks</li>
+<li>Fileless Malware – Operates in RAM</li>
+</ul>
+
+<h3>📌 How Malware Infects</h3>
+<ul>
+<li>Phishing Emails</li>
+<li>Unsecure Websites</li>
+<li>Software Vulnerabilities</li>
+<li>USB Drives</li>
+</ul>
+
+<h3>📌 Warning Signs</h3>
+<ul>
+<li>Slow system or crashes</li>
+<li>Pop-up ads</li>
+<li>Files missing or locked</li>
+<li>Browser changes automatically</li>
+</ul>
+
+<h3>📌 Prevention</h3>
+<ul>
+<li>Use antivirus software</li>
+<li>Update system regularly</li>
+<li>Avoid unknown links</li>
+<li>Enable MFA</li>
+<li>Backup data</li>
+</ul>
+
+<button onclick="location.reload()">⬅ Back</button>
+</div>
+
+<!-- SAFETY -->
+<div id="tips" class="section">
+
+<h2>🛡️ Safety Tips</h2>
+
+<h3>🔐 Password Security</h3>
+<ul>
+<li>Use strong & unique passwords</li>
+<li>Use password manager</li>
+<li>Never share credentials</li>
+</ul>
+
+<h3>📱 Account & Device Protection</h3>
+<ul>
+<li>Enable Multi-Factor Authentication (MFA)</li>
+<li>Keep software updated</li>
+<li>Lock devices</li>
+<li>Avoid public WiFi</li>
+</ul>
+
+<h3>🌐 Online Behavior</h3>
+<ul>
+<li>Avoid phishing scams</li>
+<li>Verify requests</li>
+<li>Protect personal information</li>
+<li>Use HTTPS websites</li>
+</ul>
+
+<h3>💾 Data Backup</h3>
+<ul>
+<li>Regular backups to cloud or drive</li>
+</ul>
+
+<button onclick="location.reload()">⬅ Back</button>
+</div>
+
+<!-- EXAMPLES -->
+<div id="examples" class="section">
+
+<h2>⚠️ Real-Life Cyber Attacks</h2>
+
+<ul>
+
+<li><b>WannaCry & DarkSide (Ransomware):</b> 200,000+ systems affected, Colonial Pipeline attack caused fuel crisis.</li>
+
+<li><b>Stuxnet (Worm):</b> Targeted nuclear systems via USB.</li>
+
+<li><b>Zeus (Trojan):</b> Stole banking data from 200,000+ systems.</li>
+
+<li><b>Zacinlo (Adware):</b> Fake antivirus stealing user data.</li>
+
+<li><b>Fileless Malware:</b> Runs in RAM, hard to detect.</li>
+
+<li><b>Mirai (Botnet):</b> IoT devices used for cyber attacks.</li>
+
+<li>Phishing email scams</li>
+<li>Fake job offers</li>
+<li>UPI fraud links</li>
+<li>Social media hacking</li>
+
+</ul>
+
+<button onclick="location.reload()">⬅ Back</button>
+</div>
+
+</body>
+</html>
+
+"""
+
+@app.route("/")
+def home():
+    return render_template_string(html)
+
+if __name__ == "__main__":
+    app.run(debug=True)
